@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Materiais Compartilhados</title>
+  <!-- Carregando React e ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <!-- Carregando Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Carregando o Babel para converter JSX -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 font-sans">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    window.onload = function() {
+      // Componente para um card de pasta individual como link nativo
+      const FolderCard = ({ name, link, onClick }) => {
+        return (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => onClick(name)}
+            className="flex flex-col items-center justify-center p-4 bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer w-full md:w-auto h-32 md:h-40 relative group no-underline focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <svg 
+              className="w-12 h-12 text-gray-600 dark:text-gray-300 group-hover:text-blue-500 transition-colors" 
+              xmlns="http://www.w3.org/2000/svg" 
+              width="24" 
+              height="24" 
+              viewBox="0 0 24 24" 
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2" 
+              strokeLinecap="round" 
+              strokeLinejoin="round">
+              <path d="M19 20a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.9a2 2 0 0 0 1.664-.89l.868-1.515A2 2 0 0 1 15.421 2h5.68a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2Z"/>
+              <path d="M22 10H8"/>
+            </svg>
+            <p className="mt-2 text-center text-sm font-medium text-gray-700 dark:text-gray-200 group-hover:text-blue-600 transition-colors">
+              {name}
+            </p>
+            <span className="sr-only">Clique para acessar a pasta {name}</span>
+          </a>
+        );
+      };
+
+      // Componente principal do aplicativo
+      const App = () => {
+        // Substitua os links de exemplo pelos links reais das pastas do Google Drive/OneDrive
+        const folders = [
+          { name: 'Livro no GeoGebra', link: 'https://www.geogebra.org/m/kraxvfax' },
+          { name: 'Dissertação', link: 'https://docs.google.com/document/d/1_Example_Google_Drive_Link_2/edit?usp=sharing' },
+          { name: 'Documentos', link: 'https://docs.google.com/document/d/1_Example_Google_Drive_Link_3/edit?usp=sharing' },
+          { name: 'Extras', link: 'https://docs.google.com/document/d/1_Example_Google_Drive_Link_4/edit?usp=sharing' },
+        ];
+
+        const handleFolderClick = (folderName) => {
+          console.log(`Pasta "${folderName}" foi clicada.`);
+        };
+
+        return (
+          <div className="min-h-screen bg-gray-50 dark:bg-gray-900 font-inter text-gray-900 dark:text-gray-100 flex flex-col items-center p-4 sm:p-6 lg:p-8">
+            {/* Cabeçalho e descrição */}
+            <header className="w-full max-w-4xl mb-8 md:mb-12 flex flex-col md:flex-row items-center md:items-start text-center md:text-left">
+              <div className="md:w-1/2 p-4 md:pr-8">
+                <h1 className="text-4xl sm:text-5xl font-extrabold mb-4 text-gray-800 dark:text-gray-50">
+                  Materiais
+                </h1>
+                <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Neste espaço estão reunidos materiais relacionados ao desenvolvimento da minha dissertação, incluindo documentos, referências, recursos e outros conteúdos utilizados ao longo da pesquisa. Também está disponível um livro no GeoGebra, ferramenta que contribui para a exploração, construção e visualização de conceitos matemáticos de forma dinâmica e interativa.
+
+O objetivo deste espaço é facilitar o acesso e a organização dos materiais que serviram de apoio aos estudos, à elaboração da pesquisa e às atividades desenvolvidas com o GeoGebra.
+                </p>
+                <a
+                  href="https://onedrive.live.com/?id=YOUR_ONEDRIVE_FOLDER_ID&cid=YOUR_ONEDRIVE_CID"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 mt-8 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+                >
+                  <svg 
+                    className="w-5 h-5 mr-2" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    width="24" 
+                    height="24" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    strokeWidth="2" 
+                    strokeLinecap="round" 
+                    strokeLinejoin="round">
+                    <path d="M4 17V8a2 2 0 0 1 2-2h8.5L20 10v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/>
+                    <path d="M8 8V4h6l4 4"/>
+                  </svg>
+                  Arquivos importantes
+                </a>
+              </div>
+              <div className="md:w-1/2 flex justify-center items-center mt-8 md:mt-0">
+                <img
+                  src="oi.png"
+                  alt="Pastas de materiais organizadas por bimestre."
+                  className="rounded-lg shadow-lg max-w-full h-auto"
+                />
+              </div>
+            </header>
+
+            {/* Seção das pastas */}
+            <section className="w-full max-w-4xl">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {folders.map((folder, index) => (
+                  <FolderCard
+                    key={index}
+                    name={folder.name}
+                    link={folder.link}
+                    onClick={handleFolderClick}
+                  />
+                ))}
+              </div>
+            </section>
+          </div>
+        );
+      };
+
+      // Renderizando o componente App no elemento com id="root"
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<App />);
+    }
+  </script>
+</body>
+</html>
